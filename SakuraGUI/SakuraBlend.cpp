@@ -75,7 +75,7 @@ CSakuraBlendFont::CSakuraBlendFont(LPDIRECT3DDEVICE9 pD3D9Device)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-LPDIRECT3DDEVICE9 SAKURABLEND_CALLMODE CSakuraBlendFont::GetDevice() const
+LPDIRECT3DDEVICE9 SAKURABLEND_CALLMETHOD CSakuraBlendFont::GetDevice() const
 {
 	return m_pD3D9Device;
 }
@@ -87,7 +87,7 @@ LPDIRECT3DDEVICE9 SAKURABLEND_CALLMODE CSakuraBlendFont::GetDevice() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-DirectFont *SAKURABLEND_CALLMODE CSakuraBlendFont::GetCurrent() const
+DirectFont *SAKURABLEND_CALLMETHOD CSakuraBlendFont::GetCurrent() const
 {
 	return m_Current;
 }
@@ -99,7 +99,7 @@ DirectFont *SAKURABLEND_CALLMODE CSakuraBlendFont::GetCurrent() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void SAKURABLEND_CALLMODE CSakuraBlendFont::OnCreate(LPDIRECT3DDEVICE9 pD3D9Device)
+void SAKURABLEND_CALLMETHOD CSakuraBlendFont::OnCreate(LPDIRECT3DDEVICE9 pD3D9Device)
 {
 	m_pD3D9Device = pD3D9Device;
 }
@@ -111,7 +111,7 @@ void SAKURABLEND_CALLMODE CSakuraBlendFont::OnCreate(LPDIRECT3DDEVICE9 pD3D9Devi
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-int SAKURABLEND_CALLMODE CSakuraBlendFont::AddFont(SAKURA_CONTROL_STATE eType, LPWSTR strFontName, int nFontSize)
+int SAKURABLEND_CALLMETHOD CSakuraBlendFont::AddFont(SAKURA_CONTROL_STATE eType, LPWSTR strFontName, int nFontSize)
 {
 	DirectFont* pFontNode = new DirectFont(m_pD3D9Device);
 
@@ -144,7 +144,7 @@ int SAKURABLEND_CALLMODE CSakuraBlendFont::AddFont(SAKURA_CONTROL_STATE eType, L
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void SAKURABLEND_CALLMODE CSakuraBlendFont::Blend(SAKURA_CONTROL_STATE eType, LPCWSTR pString, LPRECT pRect, DWORD Format, D3DCOLOR Color)
+void SAKURABLEND_CALLMETHOD CSakuraBlendFont::Blend(SAKURA_CONTROL_STATE eType, LPCWSTR pString, LPRECT pRect, DWORD Format, D3DCOLOR Color)
 {
 	if (m_States[eType] == NULL)
 	{
@@ -217,7 +217,7 @@ CSakuraBlendTexture::CSakuraBlendTexture(LPDIRECT3DDEVICE9 pD3D9Device)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-LPDIRECT3DDEVICE9 SAKURABLEND_CALLMODE CSakuraBlendTexture::GetDevice() const
+LPDIRECT3DDEVICE9 SAKURABLEND_CALLMETHOD CSakuraBlendTexture::GetDevice() const
 {
 	return m_pD3D9Device;
 }
@@ -229,7 +229,7 @@ LPDIRECT3DDEVICE9 SAKURABLEND_CALLMODE CSakuraBlendTexture::GetDevice() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-CCerasusUnit *SAKURABLEND_CALLMODE CSakuraBlendTexture::GetCurrent() const
+CCerasusUnit *SAKURABLEND_CALLMETHOD CSakuraBlendTexture::GetCurrent() const
 {
 	return m_Current;
 }
@@ -241,7 +241,7 @@ CCerasusUnit *SAKURABLEND_CALLMODE CSakuraBlendTexture::GetCurrent() const
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void SAKURABLEND_CALLMODE CSakuraBlendTexture::OnCreate(LPDIRECT3DDEVICE9 pD3D9Device)
+void SAKURABLEND_CALLMETHOD CSakuraBlendTexture::OnCreate(LPDIRECT3DDEVICE9 pD3D9Device)
 {
 	m_pD3D9Device = pD3D9Device;
 }
@@ -253,7 +253,7 @@ void SAKURABLEND_CALLMODE CSakuraBlendTexture::OnCreate(LPDIRECT3DDEVICE9 pD3D9D
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-int SAKURABLEND_CALLMODE CSakuraBlendTexture::AddTexture(SAKURA_CONTROL_STATE eType, CUUint sUnit)
+int SAKURABLEND_CALLMETHOD CSakuraBlendTexture::AddTexture(SAKURA_CONTROL_STATE eType, CUUint sUnit)
 {
 	CCerasusUnit* pTextureNode = new CCerasusUnit(m_pD3D9Device);
 
@@ -286,7 +286,7 @@ int SAKURABLEND_CALLMODE CSakuraBlendTexture::AddTexture(SAKURA_CONTROL_STATE eT
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-int SAKURABLEND_CALLMODE CSakuraBlendTexture::AddTexture(SAKURA_CONTROL_STATE eType, CUUintEx sUnit)
+int SAKURABLEND_CALLMETHOD CSakuraBlendTexture::AddTexture(SAKURA_CONTROL_STATE eType, CUUintEx sUnit)
 {
 	CCerasusUnit* pTextureNode = new CCerasusUnit(m_pD3D9Device);
 
@@ -319,7 +319,7 @@ int SAKURABLEND_CALLMODE CSakuraBlendTexture::AddTexture(SAKURA_CONTROL_STATE eT
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void SAKURABLEND_CALLMODE CSakuraBlendTexture::Blend(SAKURA_CONTROL_STATE eType)
+void SAKURABLEND_CALLMETHOD CSakuraBlendTexture::Blend(SAKURA_CONTROL_STATE eType)
 {
 	if (m_States[eType] == NULL)
 	{
