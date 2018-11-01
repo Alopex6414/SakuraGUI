@@ -16,6 +16,9 @@
 
 //Include SakuraGUI Common Header File
 #include "SakuraUICommon.h"
+#include "SakuraControl.h"
+#include "SakuraStatic.h"
+#include "SakuraButton.h"
 
 //Macro Definition
 #ifdef	SAKURAGUI_EXPORTS
@@ -24,16 +27,61 @@
 #define SAKURADIALOG_API	__declspec(dllimport)
 #endif
 
-#define	SAKURADIALOG_CALLMODE	__stdcall
+#define	SAKURADIALOG_CALLMETHOD	__stdcall
 
 //Class Definition
 class SAKURADIALOG_API CSakuraDialog
 {
+private:
+	int	m_nX;					// CSakuraDialog 窗口X轴坐标
+	int m_nY;					// CSakuraDialog 窗口Y轴坐标
+	int m_nWidth;				// CSakuraDialog 窗口宽度
+	int m_nHeight;				// CSakuraDialog 窗口高度
+
+	bool	m_bVisible;			// CSakuraDialog 窗口可见
+
+	CSakuraControl*	m_pControlMouseOver;				// CSakuraDialog 鼠标在控件上
+
+	static CSakuraControl*	s_pControlFocus;			// CSakuraDialog 获得焦点控件
+	static CSakuraControl*	s_pControlPressed;			// CSakuraDialog 当前按下控件
+
+private:
+	LPCALLBACKSAKURAGUIEVENT	m_pCallbackEvent;					// CSakuraDialog 窗口事件回调函数
+	void*						m_pCallbackEventUserContext;		// CSakuraDialog 窗口事件回调用户参数
+
+	vector<CSakuraControl*>		m_vecControls;						// CSakuraDialog 窗口添加的控件数组
+
+public:
+	bool	m_bNonUserEvents;							// CSakuraDialog 用户事件标志
+	bool	m_bKeyboardInput;							// CSakuraDialog 键盘输入标志
+	bool	m_bMouseInput;								// CSakuraDialog 鼠标输入标志
+
+protected:
+	void	OnMouseMove(POINT pt);						// CSakuraDialog 鼠标移动
+
 public:
 	CSakuraDialog();
 	~CSakuraDialog();
 
-private:
+	bool	SAKURADIALOG_CALLMETHOD	MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);			// CSakuraDialog 窗口消息处理
+
+	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID);												// CSakuraDialog 获取控件指针
+	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID, UINT nControlType);							// CSakuraDialog 获取控件指针
+	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControlAtPoint(POINT pt);									// CSakuraDialog 获取鼠标所在的控件指针
+
+	void	SAKURADIALOG_CALLMETHOD	RemoveControl(int nID);			// CSakuraDialog 窗口移除控件
+	void	SAKURADIALOG_CALLMETHOD RemoveAllControls();			// CSakuraDialog 窗口移除控件(ALL)
+
+	void	SetCallback(LPCALLBACKSAKURAGUIEVENT pCallback, void* pUserContext = NULL);						// CSakuraDialog 设置事件回调函数
+	void	EnableNonUserEvents(bool bEnable);																// CSakuraDialog 使能无用户事件
+	void    EnableKeyboardInput(bool bEnable);																// CSakuraDialog 使能键盘输入
+	void    EnableMouseInput(bool bEnable);																	// CSakuraDialog 使能鼠标输入
+	bool    IsKeyboardInputEnabled() const;																	// CSakuraDialog 判断键盘是否使能
+
+	void	SAKURADIALOG_CALLMETHOD SendEvent(UINT nEvent, bool bTriggeredByUser, CSakuraControl* pControl);// CSakuraDialog 发送事件
+	void	SAKURADIALOG_CALLMETHOD RequestFocus(CSakuraControl* pControl);									// CSakuraDialog 请求焦点
+
+	static void	SAKURADIALOG_CALLMETHOD	ClearFocus();				// CSakuraDialog 清除控件焦点
 
 };
 

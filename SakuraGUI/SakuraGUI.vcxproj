@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -144,7 +144,6 @@
     <ClInclude Include="SakuraControl.h" />
     <ClInclude Include="SakuraDialog.h" />
     <ClInclude Include="SakuraElement.h" />
-    <ClInclude Include="SakuraResourceManager.h" />
     <ClInclude Include="SakuraStatic.h" />
     <ClInclude Include="SakuraUICommon.h" />
   </ItemGroup>
@@ -162,7 +161,6 @@
     <ClCompile Include="SakuraControl.cpp" />
     <ClCompile Include="SakuraDialog.cpp" />
     <ClCompile Include="SakuraElement.cpp" />
-    <ClCompile Include="SakuraResourceManager.cpp" />
     <ClCompile Include="SakuraStatic.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
