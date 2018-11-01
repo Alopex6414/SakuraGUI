@@ -264,7 +264,27 @@ bool SAKURADIALOG_CALLMETHOD CSakuraDialog::MsgProc(HWND hWnd, UINT uMsg, WPARAM
 //------------------------------------------------------------------
 HRESULT CSakuraDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault, CSakuraStatic ** ppCreated)
 {
-	return E_NOTIMPL;
+	CSakuraStatic* pStatic = new CSakuraStatic(this);
+
+	if (ppCreated != NULL)
+	{
+		*ppCreated = pStatic;
+	}
+
+	if (pStatic == NULL)
+	{
+		return E_OUTOFMEMORY;
+	}
+
+	VERIFY(AddControl(pStatic));
+
+	pStatic->SetID(ID);
+	pStatic->SetText(strText);
+	pStatic->SetLocation(x, y);
+	pStatic->SetSize(width, height);
+	pStatic->m_bIsDefault = bIsDefault;
+
+	return S_OK;
 }
 
 //------------------------------------------------------------------
@@ -276,7 +296,28 @@ HRESULT CSakuraDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int widt
 //------------------------------------------------------------------
 HRESULT CSakuraDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey, bool bIsDefault, CSakuraButton ** ppCreated)
 {
-	return E_NOTIMPL;
+	CSakuraButton* pButton = new CSakuraButton(this);
+
+	if (ppCreated != NULL)
+	{
+		*ppCreated = pButton;
+	}
+
+	if (pButton == NULL)
+	{
+		return E_OUTOFMEMORY;
+	}
+
+	VERIFY(AddControl(pButton));
+
+	pButton->SetID(ID);
+	pButton->SetText(strText);
+	pButton->SetLocation(x, y);
+	pButton->SetSize(width, height);
+	pButton->SetHotkey(nHotkey);
+	pButton->m_bIsDefault = bIsDefault;
+
+	return S_OK;
 }
 
 //------------------------------------------------------------------
@@ -288,7 +329,11 @@ HRESULT CSakuraDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int widt
 //------------------------------------------------------------------
 HRESULT CSakuraDialog::AddControl(CSakuraControl * pControl)
 {
-	return E_NOTIMPL;
+	VERIFY(InitControl(pControl));
+	
+	m_vecControls.push_back(pControl);
+
+	return S_OK;
 }
 
 //------------------------------------------------------------------
@@ -308,6 +353,8 @@ HRESULT CSakuraDialog::InitControl(CSakuraControl * pControl)
 	pControl->m_nIndex = m_vecControls.size();
 
 	//...
+
+	VERIFY(pControl->OnInit());
 
 	return S_OK;
 }
