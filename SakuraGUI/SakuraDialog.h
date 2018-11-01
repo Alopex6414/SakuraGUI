@@ -65,6 +65,12 @@ public:
 
 	bool	SAKURADIALOG_CALLMETHOD	MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);			// CSakuraDialog 窗口消息处理
 
+	HRESULT AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault = false, CSakuraStatic** ppCreated = NULL);							// CSakuraDialog 窗口添加静态控件
+	HRESULT AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey = 0, bool bIsDefault = false, CSakuraButton** ppCreated = NULL);		// CSakuraDialog 窗口添加按钮控件
+
+	HRESULT	AddControl(CSakuraControl* pControl);															// CSakuraDialog 窗口添加控件
+	HRESULT	InitControl(CSakuraControl* pControl);															// CSakuraDialog 窗口初始化控件
+
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID);												// CSakuraDialog 获取控件指针
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID, UINT nControlType);							// CSakuraDialog 获取控件指针
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControlAtPoint(POINT pt);									// CSakuraDialog 获取鼠标所在的控件指针

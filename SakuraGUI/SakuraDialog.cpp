@@ -256,6 +256,63 @@ bool SAKURADIALOG_CALLMETHOD CSakuraDialog::MsgProc(HWND hWnd, UINT uMsg, WPARAM
 }
 
 //------------------------------------------------------------------
+// @Function:	 AddStatic()
+// @Purpose: CSakuraDialog窗口添加静态控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CSakuraDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault, CSakuraStatic ** ppCreated)
+{
+	return E_NOTIMPL;
+}
+
+//------------------------------------------------------------------
+// @Function:	 AddButton()
+// @Purpose: CSakuraDialog窗口添加按钮控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CSakuraDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey, bool bIsDefault, CSakuraButton ** ppCreated)
+{
+	return E_NOTIMPL;
+}
+
+//------------------------------------------------------------------
+// @Function:	 AddControl()
+// @Purpose: CSakuraDialog窗口添加控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CSakuraDialog::AddControl(CSakuraControl * pControl)
+{
+	return E_NOTIMPL;
+}
+
+//------------------------------------------------------------------
+// @Function:	 InitControl()
+// @Purpose: CSakuraDialog窗口初始化控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+HRESULT CSakuraDialog::InitControl(CSakuraControl * pControl)
+{
+	if (pControl == NULL)
+	{
+		return E_INVALIDARG;
+	}
+
+	pControl->m_nIndex = m_vecControls.size();
+
+	//...
+
+	return S_OK;
+}
+
+//------------------------------------------------------------------
 // @Function:	 GetControl()
 // @Purpose: CSakuraDialog获取控件指针
 // @Since: v1.00a
