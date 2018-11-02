@@ -65,29 +65,40 @@ public:
 
 	bool	SAKURADIALOG_CALLMETHOD	MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);			// CSakuraDialog 窗口消息处理
 
-	HRESULT AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault = false, CSakuraStatic** ppCreated = NULL);							// CSakuraDialog 窗口添加静态控件
-	HRESULT AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey = 0, bool bIsDefault = false, CSakuraButton** ppCreated = NULL);		// CSakuraDialog 窗口添加按钮控件
+	HRESULT SAKURADIALOG_CALLMETHOD	AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault = false, CSakuraStatic** ppCreated = NULL);							// CSakuraDialog 窗口添加静态控件
+	HRESULT SAKURADIALOG_CALLMETHOD	AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey = 0, bool bIsDefault = false, CSakuraButton** ppCreated = NULL);		// CSakuraDialog 窗口添加按钮控件
 
-	HRESULT	AddControl(CSakuraControl* pControl);															// CSakuraDialog 窗口添加控件
-	HRESULT	InitControl(CSakuraControl* pControl);															// CSakuraDialog 窗口初始化控件
+	HRESULT	SAKURADIALOG_CALLMETHOD	AddControl(CSakuraControl* pControl);									// CSakuraDialog 窗口添加控件
+	HRESULT	SAKURADIALOG_CALLMETHOD	InitControl(CSakuraControl* pControl);									// CSakuraDialog 窗口初始化控件
+
+	CSakuraStatic*	SAKURADIALOG_CALLMETHOD GetStatic(int ID);												// CSakuraDialog 窗口获取静态控件
+	CSakuraButton*	SAKURADIALOG_CALLMETHOD GetButton(int ID);												// CSakuraDialog 窗口获取按钮控件
 
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID);												// CSakuraDialog 获取控件指针
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID, UINT nControlType);							// CSakuraDialog 获取控件指针
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControlAtPoint(POINT pt);									// CSakuraDialog 获取鼠标所在的控件指针
 
-	void	SAKURADIALOG_CALLMETHOD	RemoveControl(int nID);			// CSakuraDialog 窗口移除控件
-	void	SAKURADIALOG_CALLMETHOD RemoveAllControls();			// CSakuraDialog 窗口移除控件(ALL)
+	void	SAKURADIALOG_CALLMETHOD	RemoveControl(int nID);													// CSakuraDialog 窗口移除控件
+	void	SAKURADIALOG_CALLMETHOD RemoveAllControls();													// CSakuraDialog 窗口移除控件(ALL)
 
-	void	SetCallback(LPCALLBACKSAKURAGUIEVENT pCallback, void* pUserContext = NULL);						// CSakuraDialog 设置事件回调函数
-	void	EnableNonUserEvents(bool bEnable);																// CSakuraDialog 使能无用户事件
-	void    EnableKeyboardInput(bool bEnable);																// CSakuraDialog 使能键盘输入
-	void    EnableMouseInput(bool bEnable);																	// CSakuraDialog 使能鼠标输入
-	bool    IsKeyboardInputEnabled() const;																	// CSakuraDialog 判断键盘是否使能
+	void	SAKURADIALOG_CALLMETHOD	SetCallback(LPCALLBACKSAKURAGUIEVENT pCallback, void* pUserContext = NULL);						// CSakuraDialog 设置事件回调函数
+	void	SAKURADIALOG_CALLMETHOD	EnableNonUserEvents(bool bEnable);																// CSakuraDialog 使能无用户事件
+	void    SAKURADIALOG_CALLMETHOD	EnableKeyboardInput(bool bEnable);																// CSakuraDialog 使能键盘输入
+	void    SAKURADIALOG_CALLMETHOD	EnableMouseInput(bool bEnable);																	// CSakuraDialog 使能鼠标输入
+	bool    SAKURADIALOG_CALLMETHOD	IsKeyboardInputEnabled() const;																	// CSakuraDialog 判断键盘是否使能
 
 	void	SAKURADIALOG_CALLMETHOD SendEvent(UINT nEvent, bool bTriggeredByUser, CSakuraControl* pControl);// CSakuraDialog 发送事件
 	void	SAKURADIALOG_CALLMETHOD RequestFocus(CSakuraControl* pControl);									// CSakuraDialog 请求焦点
 
-	static void	SAKURADIALOG_CALLMETHOD	ClearFocus();				// CSakuraDialog 清除控件焦点
+	bool	SAKURADIALOG_CALLMETHOD	GetVisible();															// CSakuraDialog 获取可见属性
+	void	SAKURADIALOG_CALLMETHOD	SetVisible(bool bVisible);												// CSakuraDialog 设置可见属性
+	void	SAKURADIALOG_CALLMETHOD	GetLocation(POINT& Pt) const;											// CSakuraDialog 获取窗口位置
+	void	SAKURADIALOG_CALLMETHOD	SetLocation(int x, int y);												// CSakuraDialog 设置窗口位置
+	void	SAKURADIALOG_CALLMETHOD	SetSize(int width, int height);											// CSakuraDialog 设置窗口大小
+	int		SAKURADIALOG_CALLMETHOD	GetWidth();																// CSakuraDialog 获取窗口宽度
+	int		SAKURADIALOG_CALLMETHOD	GetHeight();															// CSakuraDialog 获取窗口高度
+
+	static void	SAKURADIALOG_CALLMETHOD	ClearFocus();														// CSakuraDialog 清除控件焦点
 
 };
 

@@ -262,7 +262,7 @@ bool SAKURADIALOG_CALLMETHOD CSakuraDialog::MsgProc(HWND hWnd, UINT uMsg, WPARAM
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HRESULT CSakuraDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault, CSakuraStatic ** ppCreated)
+HRESULT SAKURADIALOG_CALLMETHOD CSakuraDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault, CSakuraStatic ** ppCreated)
 {
 	CSakuraStatic* pStatic = new CSakuraStatic(this);
 
@@ -294,7 +294,7 @@ HRESULT CSakuraDialog::AddStatic(int ID, LPCWSTR strText, int x, int y, int widt
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HRESULT CSakuraDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey, bool bIsDefault, CSakuraButton ** ppCreated)
+HRESULT SAKURADIALOG_CALLMETHOD CSakuraDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey, bool bIsDefault, CSakuraButton ** ppCreated)
 {
 	CSakuraButton* pButton = new CSakuraButton(this);
 
@@ -327,7 +327,7 @@ HRESULT CSakuraDialog::AddButton(int ID, LPCWSTR strText, int x, int y, int widt
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HRESULT CSakuraDialog::AddControl(CSakuraControl * pControl)
+HRESULT SAKURADIALOG_CALLMETHOD CSakuraDialog::AddControl(CSakuraControl * pControl)
 {
 	VERIFY(InitControl(pControl));
 	
@@ -343,7 +343,7 @@ HRESULT CSakuraDialog::AddControl(CSakuraControl * pControl)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-HRESULT CSakuraDialog::InitControl(CSakuraControl * pControl)
+HRESULT SAKURADIALOG_CALLMETHOD CSakuraDialog::InitControl(CSakuraControl * pControl)
 {
 	if (pControl == NULL)
 	{
@@ -357,6 +357,30 @@ HRESULT CSakuraDialog::InitControl(CSakuraControl * pControl)
 	VERIFY(pControl->OnInit());
 
 	return S_OK;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetStatic()
+// @Purpose: CSakuraDialog窗口获取静态控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CSakuraStatic *SAKURADIALOG_CALLMETHOD CSakuraDialog::GetStatic(int ID)
+{
+	return (CSakuraStatic*)GetControl(ID, SAKURA_CONTROL_STATIC);
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetButton()
+// @Purpose: CSakuraDialog窗口获取按钮控件
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+CSakuraButton *SAKURADIALOG_CALLMETHOD CSakuraDialog::GetButton(int ID)
+{
+	return (CSakuraButton*)GetControl(ID, SAKURA_CONTROL_BUTTON);
 }
 
 //------------------------------------------------------------------
@@ -496,7 +520,7 @@ void SAKURADIALOG_CALLMETHOD CSakuraDialog::RemoveAllControls()
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CSakuraDialog::SetCallback(LPCALLBACKSAKURAGUIEVENT pCallback, void * pUserContext)
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::SetCallback(LPCALLBACKSAKURAGUIEVENT pCallback, void * pUserContext)
 {
 	m_pCallbackEvent = pCallback;
 	m_pCallbackEventUserContext = pUserContext;
@@ -509,7 +533,7 @@ void CSakuraDialog::SetCallback(LPCALLBACKSAKURAGUIEVENT pCallback, void * pUser
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CSakuraDialog::EnableNonUserEvents(bool bEnable)
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::EnableNonUserEvents(bool bEnable)
 {
 	m_bNonUserEvents = bEnable;
 }
@@ -521,7 +545,7 @@ void CSakuraDialog::EnableNonUserEvents(bool bEnable)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CSakuraDialog::EnableKeyboardInput(bool bEnable)
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::EnableKeyboardInput(bool bEnable)
 {
 	m_bKeyboardInput = bEnable;
 }
@@ -533,7 +557,7 @@ void CSakuraDialog::EnableKeyboardInput(bool bEnable)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-void CSakuraDialog::EnableMouseInput(bool bEnable)
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::EnableMouseInput(bool bEnable)
 {
 	m_bMouseInput = bEnable;
 }
@@ -545,7 +569,7 @@ void CSakuraDialog::EnableMouseInput(bool bEnable)
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-bool CSakuraDialog::IsKeyboardInputEnabled() const
+bool SAKURADIALOG_CALLMETHOD CSakuraDialog::IsKeyboardInputEnabled() const
 {
 	return m_bKeyboardInput;
 }
@@ -598,6 +622,93 @@ void SAKURADIALOG_CALLMETHOD CSakuraDialog::RequestFocus(CSakuraControl * pContr
 
 	pControl->OnFocusIn();
 	s_pControlFocus = pControl;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetVisible()
+// @Purpose: CSakuraDialog获取窗口是否可见
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+bool SAKURADIALOG_CALLMETHOD CSakuraDialog::GetVisible()
+{
+	return m_bVisible;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetVisible()
+// @Purpose: CSakuraDialog设置窗口是否可见
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::SetVisible(bool bVisible)
+{
+	m_bVisible = bVisible;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetLocation()
+// @Purpose: CSakuraDialog获取窗口坐标
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::GetLocation(POINT & Pt) const
+{
+	Pt.x = m_nX;
+	Pt.y = m_nY;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetLocation()
+// @Purpose: CSakuraDialog设置窗口坐标
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::SetLocation(int x, int y)
+{
+	m_nX = x;
+	m_nY = y;
+}
+
+//------------------------------------------------------------------
+// @Function:	 SetSize()
+// @Purpose: CSakuraDialog设置窗口大小
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+void SAKURADIALOG_CALLMETHOD CSakuraDialog::SetSize(int width, int height)
+{
+	m_nWidth = width;
+	m_nHeight = height;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetWidth()
+// @Purpose: CSakuraDialog获取窗口宽度
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+int SAKURADIALOG_CALLMETHOD CSakuraDialog::GetWidth()
+{
+	return m_nWidth;
+}
+
+//------------------------------------------------------------------
+// @Function:	 GetHeight()
+// @Purpose: CSakuraDialog获取窗口高度
+// @Since: v1.00a
+// @Para: None
+// @Return: None
+//------------------------------------------------------------------
+int SAKURADIALOG_CALLMETHOD CSakuraDialog::GetHeight()
+{
+	return m_nHeight;
 }
 
 //------------------------------------------------------------------
