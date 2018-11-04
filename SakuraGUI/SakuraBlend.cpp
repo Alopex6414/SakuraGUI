@@ -115,7 +115,10 @@ void SAKURABLEND_CALLMETHOD CSakuraBlendFont::OnLostDevice()
 {
 	for (int i = 0; i < MAX_CONTROL_STATES; ++i)
 	{
-		m_States[i]->DirectFontGetFont()->OnLostDevice();
+		if (m_States[i] != NULL)
+		{
+			m_States[i]->DirectFontGetFont()->OnLostDevice();
+		}
 	}
 
 }
@@ -131,7 +134,10 @@ void SAKURABLEND_CALLMETHOD CSakuraBlendFont::OnResetDevice()
 {
 	for (int i = 0; i < MAX_CONTROL_STATES; ++i)
 	{
-		m_States[i]->DirectFontGetFont()->OnResetDevice();
+		if (m_States[i] != NULL)
+		{
+			m_States[i]->DirectFontGetFont()->OnResetDevice();
+		}
 	}
 
 }
@@ -288,7 +294,10 @@ void SAKURABLEND_CALLMETHOD CSakuraBlendTexture::OnLostDevice()
 {
 	for (int i = 0; i < MAX_CONTROL_STATES; ++i)
 	{
-		m_States[i]->CCerasusUnitReset();
+		if (m_States[i] != NULL)
+		{
+			m_States[i]->CCerasusUnitReset();
+		}
 	}
 }
 
@@ -301,7 +310,13 @@ void SAKURABLEND_CALLMETHOD CSakuraBlendTexture::OnLostDevice()
 //------------------------------------------------------------------
 void SAKURABLEND_CALLMETHOD CSakuraBlendTexture::OnResetDevice()
 {
-	
+	for (int i = 0; i < MAX_CONTROL_STATES; ++i)
+	{
+		if (m_States[i] != NULL)
+		{
+			m_States[i]->CCerasusUnitReCreate();
+		}
+	}
 }
 
 //------------------------------------------------------------------
