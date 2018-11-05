@@ -66,6 +66,9 @@
     <ClInclude Include="SakuraResourceManager.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SakuraResource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SakuraButton.cpp">
@@ -111,6 +114,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SakuraResourceManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SakuraResource.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
