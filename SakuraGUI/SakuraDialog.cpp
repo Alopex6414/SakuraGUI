@@ -497,7 +497,17 @@ HRESULT SAKURADIALOG_CALLMETHOD CSakuraDialog::InitControl(CSakuraControl * pCon
 
 	pControl->m_nIndex = m_vecControls.size();
 
-	//...
+	for (auto iter = m_vecDefaultControls.begin(); iter != m_vecDefaultControls.end(); ++iter)
+	{
+		if ((*iter)->nControlType == pControl->GetType())
+		{
+			CSakuraElement** ppElement = &(pControl->GetElement((*iter)->iElement));
+			
+			SAFE_DELETE(*ppElement);
+			*ppElement = (*iter)->pElement;
+		}
+
+	}
 
 	VERIFY(pControl->OnInit());
 

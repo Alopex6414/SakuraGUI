@@ -151,13 +151,5 @@ void SAKURASTATIC_CALLMETHOD CSakuraStatic::Render()
 		iState = SAKURA_STATE_DISABLED;
 	}
 
-	if (m_bIsDefault == true)
-	{
-		m_vecElements.at(0)->GetFontBlend().Blend(iState, m_strText, &m_rcBoundingBox, m_dwFormat, m_dwColor);
-	}
-	else
-	{
-		m_vecElements.at(1)->GetFontBlend().Blend(iState, m_strText, &m_rcBoundingBox, m_dwFormat, m_dwColor);
-	}
-
+	m_vecElements.at(0)->GetFontBlend().Blend(iState, m_strText, &m_rcBoundingBox, m_dwFormat, m_dwColor);
 }
