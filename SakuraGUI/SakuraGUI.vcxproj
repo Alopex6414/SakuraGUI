@@ -134,6 +134,7 @@
     <ClInclude Include="CerasusUnit.h" />
     <ClInclude Include="DirectCommon.h" />
     <ClInclude Include="DirectFont.h" />
+    <ClInclude Include="DirectGraphics.h" />
     <ClInclude Include="DirectGraphics3D.h" />
     <ClInclude Include="DirectInput.h" />
     <ClInclude Include="DirectSprite.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="CerasusAlgorithm.cpp" />
     <ClCompile Include="CerasusUnit.cpp" />
     <ClCompile Include="DirectFont.cpp" />
+    <ClCompile Include="DirectGraphics.cpp" />
     <ClCompile Include="DirectGraphics3D.cpp" />
     <ClCompile Include="DirectInput.cpp" />
     <ClCompile Include="DirectSprite.cpp" />

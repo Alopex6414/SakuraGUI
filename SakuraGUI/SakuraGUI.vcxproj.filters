@@ -75,6 +75,9 @@
     <ClInclude Include="SakuraCheckBox.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DirectGraphics.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SakuraButton.cpp">
@@ -129,6 +132,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SakuraCheckBox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectGraphics.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
