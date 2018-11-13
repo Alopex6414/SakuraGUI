@@ -21,6 +21,8 @@
 #include "SakuraControl.h"
 #include "SakuraStatic.h"
 #include "SakuraButton.h"
+#include "SakuraCheckBox.h"
+#include "SakuraRadioButton.h"
 
 #include "DirectGraphics.h"
 
@@ -89,8 +91,9 @@ public:
 	
 	bool	SAKURADIALOG_CALLMETHOD	MsgProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);			// CSakuraDialog 窗口消息处理
 
-	HRESULT SAKURADIALOG_CALLMETHOD	AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault = false, CSakuraStatic** ppCreated = NULL);							// CSakuraDialog 窗口添加静态控件
-	HRESULT SAKURADIALOG_CALLMETHOD	AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey = 0, bool bIsDefault = false, CSakuraButton** ppCreated = NULL);		// CSakuraDialog 窗口添加按钮控件
+	HRESULT SAKURADIALOG_CALLMETHOD	AddStatic(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bIsDefault = false, CSakuraStatic** ppCreated = NULL);													// CSakuraDialog 窗口添加静态控件
+	HRESULT SAKURADIALOG_CALLMETHOD	AddButton(int ID, LPCWSTR strText, int x, int y, int width, int height, UINT nHotkey = 0, bool bIsDefault = false, CSakuraButton** ppCreated = NULL);								// CSakuraDialog 窗口添加按钮控件
+	HRESULT SAKURADIALOG_CALLMETHOD AddCheckBox(int ID, LPCWSTR strText, int x, int y, int width, int height, bool bChecked = false, UINT nHotkey = 0, bool bIsDefault = false, CSakuraCheckBox** ppCreated = NULL);	// CSakuraDialog 窗口添加复选框按钮
 
 	HRESULT	SAKURADIALOG_CALLMETHOD	AddControl(CSakuraControl* pControl);									// CSakuraDialog 窗口添加控件
 	HRESULT	SAKURADIALOG_CALLMETHOD	InitControl(CSakuraControl* pControl);									// CSakuraDialog 窗口初始化控件
@@ -105,6 +108,9 @@ public:
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID);												// CSakuraDialog 获取控件指针
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControl(int ID, UINT nControlType);							// CSakuraDialog 获取控件指针
 	CSakuraControl*	SAKURADIALOG_CALLMETHOD	GetControlAtPoint(POINT pt);									// CSakuraDialog 获取鼠标所在的控件指针
+
+	void	SAKURADIALOG_CALLMETHOD	ClearRadioButtonGroup(UINT nGroup);										// CSakuraDialog 清除单选按钮的组别
+	void	SAKURADIALOG_CALLMETHOD	ClearComboBox(int nID);													// CSakuraDialog 清除下拉列表
 
 	HRESULT	SAKURADIALOG_CALLMETHOD SetDefaultElement(UINT nControlType, UINT iElement, CSakuraElement** ppElement);				// CSakuraDialog 设置默认控件元素
 	CSakuraElement*	SAKURADIALOG_CALLMETHOD	GetDefaultElement(UINT nControlType, UINT iElement);									// CSakuraDialog 获取默认控件元素
