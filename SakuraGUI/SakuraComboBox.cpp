@@ -18,7 +18,7 @@
 // @Para: None
 // @Return: None
 //------------------------------------------------------------------
-CSakuraComboBox::CSakuraComboBox()
+CSakuraComboBox::CSakuraComboBox(CSakuraDialog* pDialog)
 {
 }
 

@@ -27,12 +27,37 @@
 
 #define	SAKURACOMBOBOX_CALLMETHOD	__stdcall
 
+//Struct Definition
+struct S_SakuraComboBoxItem
+{
+	WCHAR strText[256];
+	void* pData;
+
+	RECT rcActive;
+	bool bVisible;
+};
+
 //Class Definition
 class SAKURACOMBOBOX_API CSakuraComboBox : public CSakuraButton
 {
+protected:
+	int m_iSelected;
+	int m_iFocused;
+	int m_nDropHeight;
+	int m_nSBWidth;
+
+	bool m_bOpened;
+
+	RECT m_rcText;
+	RECT m_rcButton;
+	RECT m_rcDropdown;
+	RECT m_rcDropdownText;
+
+	vector<S_SakuraComboBoxItem*>	m_Items;
+
 public:
-	CSakuraComboBox();
-	~CSakuraComboBox();
+			CSakuraComboBox(CSakuraDialog* pDialog = NULL);
+	virtual	~CSakuraComboBox();
 
 };
 
