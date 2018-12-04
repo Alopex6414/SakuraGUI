@@ -87,6 +87,12 @@
     <ClInclude Include="SakuraScrollBar.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SakuraSlider.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SakuraEditBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SakuraButton.cpp">
@@ -153,6 +159,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="SakuraScrollBar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SakuraSlider.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SakuraEditBox.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
